@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Saúde & Ciência | Estudo Clínico Revela Composto Bioativo para a Próstata e Sono Contínuo</title>
+  <meta name="description" content="Reportagem especial de jornalismo científico investiga fórmula bioativa autorizada pela Anvisa que atua no inchaço prostático e devolve o sono ininterrupto.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Newsreader (Editorial Serif) & Inter (Clean UI Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            portal: {
+              red: '#CC0000',
+              darkred: '#990000',
+              black: '#0C0C0C',
+              dark: '#141414',
+              gray: '#666666',
+              light: '#F8F9FA',
+              border: '#E2E4E8'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Seleção de texto de alto contraste */
+    ::selection {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+    
+    /* Tipografia editorial imersiva (Newsreader + Georgia) */
+    .article-body {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.2rem;
+      line-height: 1.88;
+      color: #1f2937;
+      letter-spacing: -0.01em;
+    }
+    .article-body p {
+      margin-bottom: 1.65rem;
+    }
+    
+    /* Capitular clássica de jornalismo investigativo */
+    .article-body p.lead-paragraph::first-letter {
+      float: left;
+      font-family: 'Inter', sans-serif;
+      font-size: 4rem;
+      line-height: 0.82;
+      font-weight: 900;
+      padding-top: 6px;
+      padding-right: 12px;
+      padding-bottom: 2px;
+      color: #CC0000;
+    }
+
+    /* Curvas de física suave (Emil Kowalski / iOS easing) */
+    :root {
+      --ease-out-cubic: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Barra de progresso de leitura fluida */
+    #reading-progress {
+      transition: width 120ms linear;
+    }
+
+    /* Microinteração tátil de botão */
+    .btn-press {
+      transition: transform 140ms var(--ease-out-cubic), box-shadow 140ms var(--ease-out-cubic), background-color 140ms ease;
+    }
+    .btn-press:active {
+      transform: scale(0.975);
+    }
+    .btn-press:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Placeholder visual técnico */
+    .asset-placeholder {
+      background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+      border: 1.5px dashed #cbd5e1;
+      position: relative;
+      overflow: hidden;
+    }
+    .asset-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(204, 0, 0, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Ocultar barra de rolagem horizontal */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Transição suave de modal */
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Efeito de pulso suave sincronizado com a voz do áudio (momento do CTA) */
+    @keyframes pulsoVerde {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      }
+      50% {
+        transform: scale(1.025);
+        box-shadow: 0 0 0 16px rgba(34, 197, 94, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+    }
+    .pulsar-destaque {
+      animation: pulsoVerde 1.4s infinite cubic-bezier(0.25, 1, 0.5, 1) !important;
+      background-color: #16a34a !important;
+      border-color: #22c55e !important;
+    }
+  </style>
+</head>
+
+<body class="bg-[#F8F9FA] text-gray-900 font-sans antialiased min-h-screen flex flex-col selection:bg-red-100 selection:text-red-900 pb-20">
+
+  <!-- BARRA DE PROGRESSO DE LEITURA (FIXA NO TOPO) -->
+  <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-red-600 to-[#CC0000] z-50 w-0" id="reading-progress"></div>
+
+  <!-- MINI PLAYER FLUTUANTE PERSISTENTE (QUANDO O USUÁRIO ROLA A PÁGINA COM ÁUDIO TOCANDO) -->
+  <div id="mini-audio-player" class="fixed top-0 left-0 right-0 z-50 bg-neutral-950/95 border-b border-emerald-500/40 shadow-2xl backdrop-blur-md px-4 py-2.5 text-white font-sans transition-all duration-300 -translate-y-full opacity-0 pointer-events-none">
+    <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 overflow-hidden">
+        <button type="button" onclick="controlarAudio()" class="w-9 h-9 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow transition-transform active:scale-95 cursor-pointer" aria-label="Pausar ou reproduzir áudio">
+          <svg id="miniPlayIconSvg" class="w-4 h-4 fill-current hidden" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="miniPauseIconSvg" class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="truncate">
+          <div class="flex items-center gap-1.5">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="font-bold text-xs sm:text-sm text-neutral-100 truncate">Tocando: Resumo Alphasin (1 min)</span>
+          </div>
+          <span class="text-[11px] text-neutral-400 font-mono" id="miniTempoAudio">00:00 / 01:06</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <a 
+          href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Ouvi%20o%20resumo%20do%20Alphasin%20e%20quero%20o%20envio%20com%20PAGAMENTO%20NA%20ENTREGA." 
+          target="_blank" 
+          rel="noopener noreferrer"
+          id="miniWhatsBtn"
+          class="btn-press bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs px-3.5 py-2 rounded-xl uppercase tracking-wider shadow flex items-center gap-1.5"
+        >
+          <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          <span class="hidden sm:inline">Chamar no</span> WhatsApp
+        </a>
+      </div>
+    </div>
+    <!-- Barra de progresso fina -->
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-neutral-800">
+      <div id="mini-progress-fill" class="h-full bg-emerald-500 w-0 transition-all duration-100"></div>
+    </div>
+  </div>
+
+  <!-- CABEÇALHO EDITORIAL STICKY COM INFORME PUBLICITÁRIO FIXO NO TOPO (COMPLIANCE OBRIGATÓRIO TABOOLA) -->
+  <header class="bg-[#0C0C0C] text-white border-b border-neutral-800 sticky top-0 z-40 shadow-sm backdrop-blur-md bg-opacity-95">
+    
+    <!-- BARRA FIXA SUPERIOR: INFORME PUBLICITÁRIO / ADVERTORIAL -->
+    <div class="bg-[#050505] text-neutral-400 py-1.5 px-4 text-center text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase border-b border-neutral-800/80">
+      <div class="max-w-6xl mx-auto flex items-center justify-between">
+        <span class="hidden sm:inline text-neutral-500">Divulgação de Saúde & Ciência</span>
+        <span class="mx-auto sm:mx-0 font-extrabold text-neutral-200">INFORME PUBLICITÁRIO / ADVERTORIAL • CONTEÚDO PATROCINADO</span>
+        <span class="hidden sm:inline text-emerald-400 font-bold">● Lote com Entrega Confirmada 2026</span>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
+      
+      <!-- Marca Noticiosa Independente de Credibilidade (Sem marcas de terceiros) -->
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="switchTab('investigacao')" class="flex items-center gap-2.5 group focus:outline-none rounded text-left">
+          <div class="bg-[#CC0000] px-3 py-1 font-black text-2xl tracking-tighter text-white uppercase select-none transition-transform duration-200 group-hover:scale-[1.02] shadow-inner" style="font-family: 'Inter', sans-serif; letter-spacing: -2px;">
+            GCS
+          </div>
+          <div class="border-l border-neutral-700 pl-2.5">
+            <span class="font-extrabold text-sm sm:text-base tracking-wider text-white block leading-tight">SAÚDE & CIÊNCIA</span>
+            <span class="text-[9px] text-neutral-400 font-semibold tracking-widest uppercase block">Guia de Conteúdo em Saúde</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Links de navegação entre as 5 matérias (Desktop) -->
+      <nav class="hidden md:flex items-center space-x-6 text-[12px] font-bold uppercase tracking-wider text-neutral-300" id="desktop-nav">
+        <button onclick="switchTab('ultimas')" id="nav-btn-ultimas" class="nav-tab py-1 px-1 transition-colors hover:text-white">Últimas</button>
+        <button onclick="switchTab('investigacao')" id="nav-btn-investigacao" class="nav-tab active-nav py-1 px-1 transition-colors text-[#CC0000] border-b-2 border-[#CC0000]">Investigação</button>
+        <button onclick="switchTab('urologia')" id="nav-btn-urologia" class="nav-tab py-1 px-1 transition-colors hover:text-white">Urologia</button>
+        <button onclick="switchTab('longevidade')" id="nav-btn-longevidade" class="nav-tab py-1 px-1 transition-colors hover:text-white">Longevidade</button>
+        <button onclick="switchTab('checagem')" id="nav-btn-checagem" class="nav-tab py-1 px-1 transition-colors hover:text-white">Checagem</button>
+      </nav>
+
+      <!-- Controles do Topo: Botão Ouvir Resumo + Badge Ao Vivo -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        
+        <!-- Botão Play no Topo (Visível Imediatamente no 1º Segundo) -->
+        <button 
+          type="button" 
+          onclick="controlarAudio()" 
+          id="headerPlayBtn"
+          class="btn-press inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 rounded-full shadow-md border border-emerald-400/40 select-none cursor-pointer transition-all shrink-0"
+          aria-label="Ouvir resumo em áudio de 1 minuto"
+        >
+          <svg id="headerPlayIcon" class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="headerPauseIcon" class="w-3.5 h-3.5 fill-current shrink-0 hidden" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+          <span id="headerPlayText">Ouvir (1 min)</span>
+        </button>
+
+        <!-- Badge de Status Jornalístico -->
+        <div class="inline-flex items-center gap-1.5 sm:gap-2 bg-neutral-900 border border-neutral-700 text-[10.5px] sm:text-[11px] font-bold text-neutral-200 px-2.5 sm:px-3 py-1.5 rounded-full shadow-inner shrink-0">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#CC0000]"></span>
+          </span>
+          <span class="tracking-wide uppercase text-[10px] hidden sm:inline" id="top-badge-text">Reportagem Especial</span>
+          <span class="text-neutral-300 text-[10px] font-bold sm:hidden">Ao Vivo</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Barra de navegação rápida por abas para mobile (Scroll Horizontal) -->
+    <div class="md:hidden flex items-center space-x-2 border-t border-neutral-800 bg-[#141414] px-3 py-2 text-[11px] font-extrabold uppercase tracking-wider text-gray-400 overflow-x-auto no-scrollbar">
+      <button onclick="switchTab('ultimas')" id="mob-btn-ultimas" class="mob-tab px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 whitespace-nowrap transition-colors">Últimas</button>
+      <button onclick="switchTab('investigacao')" id="mob-btn-investigacao" class="mob-tab px-3 py-1 rounded-full bg-[#CC0000] text-white whitespace-nowrap font-black transition-colors">Investigação</button>
+      <button onclick="switchTab('urologia')" id="mob-btn-urologia" class="mob-tab px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 whitespace-nowrap transition-colors">Urologia</button>
+      <button onclick="switchTab('longevidade')" id="mob-btn-longevidade" class="mob-tab px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 whitespace-nowrap transition-colors">Longevidade</button>
+      <button onclick="switchTab('checagem')" id="mob-btn-checagem" class="mob-tab px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 whitespace-nowrap transition-colors">Checagem</button>
+    </div>
+  </header>
+
+  <!-- CONTAINER PRINCIPAL (LAYOUT ASSIMÉTRICO: MATÉRIA + SIDEBAR FIXO) -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 pb-16 flex-1 w-full" id="artigo-container">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+      
+      <!-- COLUNA PRINCIPAL: ÁREA DINÂMICA DAS MATÉRIAS (8 COLUNAS) -->
+      <main class="lg:col-span-8 bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-sm">
+
+        <!-- ======================================================= -->
+        <!-- MATÉRIA 1: INVESTIGAÇÃO CIENTÍFICA (ARTIGO PRINCIPAL) -->
+        <!-- ======================================================= -->
+        <section id="tab-investigacao" class="article-tab block">
+          
+          <nav aria-label="Breadcrumb" class="flex items-center text-[11px] font-extrabold uppercase tracking-wider mb-3 text-gray-500">
+            <span class="text-[#CC0000] font-black">SAÚDE & CIÊNCIA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-700">INVESTIGAÇÃO MÉDICA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-400 font-medium">LONGEVIDADE MASCULINA</span>
+          </nav>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-[36px] font-black text-gray-950 leading-[1.18] tracking-tight mb-4">
+            Pesquisadores analisam composto bioativo que ajuda homens acima dos 45 anos a restaurarem o sono ininterrupto e o fluxo natural
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-6 font-serif">
+            Ação conjunta de antioxidantes de alta absorção e agentes anti-inflamatórios atua diretamente na redução do inchaço prostático e na recuperação do vigor diário.
+          </p>
+
+          <!-- Metadados da Matéria -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-y border-gray-200 py-3.5 mb-8 gap-3 text-xs text-gray-500">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[#CC0000] text-white flex items-center justify-center font-black text-xs shadow-sm">
+                SC
+              </div>
+              <div>
+                <div class="font-bold text-gray-900 text-[13px] flex items-center gap-1.5">
+                  Por Redação Saúde & Longevidade
+                  <span class="text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded text-[10px] border border-emerald-200">Revisado</span>
+                </div>
+                <div class="text-gray-500 text-[11px]">Revisão por Especialistas em Urologia e Fitoterapia</div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between sm:justify-end gap-4 text-[11.5px]">
+              <div><span class="text-gray-400">Atualizado:</span> <strong class="text-gray-800 current-date-display">Hoje</strong></div>
+              <span class="text-gray-300">•</span>
+              <div class="text-gray-600">Leitura: 4 min</div>
+            </div>
+          </div>
+
+          <!-- Box de Destaques (Key Takeaways) -->
+          <div class="bg-red-50/40 border-l-4 border-[#CC0000] border-y border-r border-red-100 rounded-r-xl p-5 mb-8 shadow-sm">
+            <div class="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#CC0000] mb-3">
+              <span class="w-2.5 h-2.5 bg-[#CC0000] rounded-sm"></span>
+              O que você precisa saber nesta reportagem
+            </div>
+            <ul class="space-y-3 text-[13.5px] text-gray-800 font-medium">
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CC0000] font-black leading-none mt-1">▪</span>
+                <span><strong>O Inimigo Oculto:</strong> Despertares noturnos e fluxo urinário fraco decorrem de inflamação e estresse oxidativo, e não são parte obrigatória da idade.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CC0000] font-black leading-none mt-1">▪</span>
+                <span><strong>Ação Sinérgica:</strong> Fórmula reúne 7 nutrientes com destaque para Cúrcuma Longa, Semente de Uva e Própolis sob rigor da Anvisa.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CC0000] font-black leading-none mt-1">▪</span>
+                <span><strong>Segurança Logística:</strong> Modalidade inédita de pagamento apenas no ato do recebimento elimina risco de golpes para homens acima de 50 anos.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- REPRODUTOR DE ÁUDIO ESTRATÉGICO (CONVERSÃO ACELERADA 1 MINUTO - TOPO ABSOLUTO) -->
+          <div id="audio-player-container" class="my-7 p-5 sm:p-6 bg-gradient-to-r from-neutral-900 via-neutral-950 to-neutral-900 border-2 border-neutral-800 rounded-2xl shadow-xl text-white font-sans not-italic relative overflow-hidden transition-all duration-300">
+            
+            <!-- Linha Decorativa Superior -->
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-amber-500 to-emerald-500"></div>
+
+            <div class="flex flex-col gap-3.5">
+              <!-- Cabeçalho com Gatilho de Praticidade -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-center gap-2 text-xs sm:text-sm font-bold text-neutral-200">
+                  <span class="flex h-3 w-3 relative shrink-0">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                  </span>
+                  <span class="text-amber-400 font-black tracking-wide uppercase">🎧 Prefere Ouvir?</span>
+                  <span class="text-neutral-300 font-medium hidden sm:inline">Sem tempo para ler agora ou com vista cansada?</span>
+                </div>
+                <span class="inline-flex self-start sm:self-auto text-[11px] font-mono text-neutral-400 bg-neutral-800/90 px-2.5 py-0.5 rounded border border-neutral-700 shrink-0">Duração: 1 min</span>
+              </div>
+
+              <p class="text-xs text-neutral-300 leading-snug sm:hidden">
+                👉 Sem tempo para ler agora ou com vista cansada? Ouça o resumo narrado em 1 minuto:
+              </p>
+
+              <!-- Tag de Áudio Nativa -->
+              <audio id="meuAudio" src="audiovenda/audiovenda.wav" preload="metadata"></audio>
+
+              <!-- Controles do Player com Estilo Premium -->
+              <div class="flex flex-col sm:flex-row items-center gap-3 bg-neutral-900/95 border border-neutral-800 p-3.5 rounded-xl">
+                <!-- Botão Play/Pause Grande e Tátil -->
+                <button 
+                  type="button" 
+                  id="btnPlay" 
+                  onclick="controlarAudio()" 
+                  class="btn-press w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg shrink-0 select-none cursor-pointer"
+                  aria-label="Ouvir resumo em áudio"
+                >
+                  <svg id="playIcon" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                  <svg id="pauseIcon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                  </svg>
+                  <span id="btnPlayText">OUVIR RESUMO (1 MIN)</span>
+                </button>
+
+                <!-- Barra de Progresso Interativa + Contador de Tempo -->
+                <div class="flex-1 w-full flex items-center gap-3">
+                  <div id="audio-progress-bar" onclick="seekAudio(event)" class="relative flex-1 h-3 bg-neutral-800 rounded-full overflow-hidden cursor-pointer group" title="Clique para avançar ou retroceder">
+                    <div id="audio-progress-fill" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full w-0 transition-all duration-100 relative">
+                      <span class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    </div>
+                  </div>
+                  <div class="text-xs font-mono text-neutral-300 font-bold tracking-wider shrink-0" id="tempoAudio">
+                    00:00 / 01:06
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mensagem Dinâmica do Estado do Player -->
+              <div id="audio-status-msg" class="text-xs text-neutral-400 flex items-center justify-between">
+                <span id="audio-status-text">Toque no botão para ouvir o relatório de 1 minuto</span>
+                <span class="text-[10px] text-neutral-500 font-mono">Voz Original • Sem Cortes</span>
+              </div>
+
+              <!-- BOTÃO DE WHATSAPP REATIVO AO ÁUDIO (MOMENTO DO CTA AOS 48s) -->
+              <div id="ctaBloco" class="mt-2 pt-3 border-t border-neutral-800/80 text-center">
+                <a 
+                  id="btnWhats" 
+                  href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Ouvi%20o%20resumo%20do%20Alphasin%20e%20quero%20o%20envio%20com%20PAGAMENTO%20NA%20ENTREGA." 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="btn-press block w-full py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base uppercase tracking-wide shadow-xl transition-all border-2 border-emerald-500"
+                >
+                  <span class="flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    <span id="btnWhatsText">👉 FALAR AGORA COM ATENDIMENTO PRIORITÁRIO NO WHATSAPP</span>
+                  </span>
+                </a>
+                <p class="text-[11px] text-neutral-400 mt-2">
+                  📦 Envio com pagamento apenas na entrega • Embalagem 100% neutra e discreta
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Corpo do Artigo Investigativo -->
+          <article class="article-body">
+            
+            <figure class="mb-8 not-italic">
+              <img src="images/hero_man_vitality.jpg" alt="Homem maduro brasileiro de 58 anos revitalizado e descansado pela manhã" class="w-full h-auto max-h-[460px] object-cover rounded-2xl shadow-md border border-gray-200">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                Acordar com energia e sem interrupções noturnas voltou a ser realidade para brasileiros após novo hábito matinal. (Foto: Divulgação Científica / GCS Saúde)
+              </figcaption>
+            </figure>
+
+            <p class="lead-paragraph">
+              Se você tem mais de 45 anos, é bem provável que conheça de perto este ciclo exaustivo: você deita cansado após um dia longo, mas seu sono é interrompido às <strong>2h da manhã, depois às 4h e novamente antes do despertador</strong>, sempre com aquela necessidade urgente de ir ao banheiro.
+            </p>
+
+            <p>
+              Ao chegar lá, a frustração é quase imediata: o fluxo urinário se mostra fraco, demorado, interrompido e, pior de tudo, com aquela nítida sensação de que a bexiga continua cheia.
+            </p>
+
+            <p>
+              Com o passar das semanas, a privação de sono cobra seu preço: irritabilidade constante, falta de concentração no trabalho, fadiga muscular e uma perda gradativa na disposição física e na vitalidade que abala profundamente a autoconfiança de qualquer homem.
+            </p>
+
+            <div class="bg-gray-50 border-l-4 border-[#CC0000] p-5 rounded-r-lg my-8 not-italic shadow-sm font-sans">
+              <h4 class="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+                <span class="bg-[#CC0000] text-white text-xs font-black px-2 py-0.5 rounded">FATO CIENTÍFICO</span>
+                O Mito do Desconforto Inevitável
+              </h4>
+              <p class="text-sm text-gray-700 leading-relaxed m-0 mt-2">
+                Muitos homens acreditam que acordar à noite e perder a força do jato é um destino obrigatório da idade. A ciência atual comprova: o verdadeiro culpado é o <strong>estresse oxidativo celular</strong> que comprime a uretra e inflama a glândula prostática silenciosamente ao longo dos anos.
+              </p>
+            </div>
+
+            <h2 class="text-2xl font-black text-gray-950 mt-10 mb-4 font-sans tracking-tight">
+              A Causa Biológica: Por que a Próstata Incha?
+            </h2>
+
+            <p>
+              A próstata envolve diretamente a uretra — o conduto que drena a urina para fora do corpo. Com a oxidação celular contínua e a perda gradual de nutrientes essenciais, os tecidos da próstata sofrem pequenas inflamações microscópicas.
+            </p>
+
+            <p>
+              Com o inchaço, ela passa a exercer uma pressão física contínua sobre a passagem urinária — exatamente como alguém pisando em uma mangueira de jardim. O fluxo fica interrompido e a bexiga não consegue esvaziar por completo.
+            </p>
+
+            <figure class="my-8 not-italic">
+              <img src="images/anatomidadaprostata.jpeg" alt="Comparativo anatômico: Próstata Saudável com canal livre versus Próstata Aumentada comprimindo a uretra" class="w-full h-auto max-h-[460px] object-contain bg-white rounded-2xl shadow-md border border-gray-200 p-2 sm:p-4">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                Comparativo anatômico: à esquerda, o canal urinário livre permitindo fluxo desimpedido; à direita, a próstata aumentada comprimindo a uretra e impedindo o esvaziamento total da bexiga. (Ilustração: Divulgação Científica / GCS Saúde)
+              </figcaption>
+            </figure>
+
+            <h2 class="text-2xl font-black text-gray-950 mt-10 mb-4 font-sans tracking-tight">
+              A Solução Sinergética: Como Funciona a Fórmula do Alphasin
+            </h2>
+
+            <p>
+              Após testes laboratoriais focados em biodisponibilidade celular, especialistas reuniram 7 bioativos naturais em uma proporção exata, batizada de <strong>Alphasin</strong>.
+            </p>
+
+            <figure class="my-8 not-italic">
+              <img src="images/suplementonabancada.jpeg" alt="Frasco oficial do Alphasin com bioativos naturais concentrados: Cúrcuma Longa e Semente de Uva" class="w-full h-auto max-h-[460px] object-cover rounded-2xl shadow-md border border-gray-200">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                Frasco oficial do Alphasin: combinação de bioativos concentrados com cúrcuma longa e semente de uva para alívio do inchaço e restauração do fluxo urinário. (Foto: Divulgação Oficial)
+              </figcaption>
+            </figure>
+
+            <div class="my-8 space-y-4 font-sans not-italic text-sm">
+              <div class="p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-red-100 text-[#CC0000] flex items-center justify-center font-black shrink-0">1</div>
+                <div>
+                  <strong class="text-gray-900 text-base block">Extrato de Rizoma de Cúrcuma Longa:</strong>
+                  <span class="text-gray-600">Reconhecida mundialmente por sua potente ação anti-inflamatória tecidual, atua diretamente no alívio da pressão sobre o trato urinário e promove vitalidade física.</span>
+                </div>
+              </div>
+
+              <div class="p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-red-100 text-[#CC0000] flex items-center justify-center font-black shrink-0">2</div>
+                <div>
+                  <strong class="text-gray-900 text-base block">Extrato de Semente de Uva:</strong>
+                  <span class="text-gray-600">Carga extraordinária de proantocianidinas que combatem o estresse oxidativo e blindam as células contra o envelhecimento precoce.</span>
+                </div>
+              </div>
+
+              <div class="p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-red-100 text-[#CC0000] flex items-center justify-center font-black shrink-0">3</div>
+                <div>
+                  <strong class="text-gray-900 text-base block">Extrato Concentrado de Própolis:</strong>
+                  <span class="text-gray-600">Agente natural protetor e bacteriostático que fortalece as defesas celulares do organismo masculino.</span>
+                </div>
+              </div>
+
+              <div class="p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-red-100 text-[#CC0000] flex items-center justify-center font-black shrink-0">4</div>
+                <div>
+                  <strong class="text-gray-900 text-base block">Complexo de Vitaminas D, E, B6 e B12:</strong>
+                  <span class="text-gray-600">Suporte integral ao sistema nervoso central, regulação do metabolismo, combate à fadiga crônica e preservação da vitalidade diária.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dados Sanitários e Técnicos -->
+            <div class="bg-neutral-50 border border-neutral-300 rounded-xl p-6 my-8 font-sans not-italic text-sm">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="bg-[#CC0000] text-white p-2 rounded-lg shadow">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-900 text-base">Procedência e Rigor Técnico Autorizado</h3>
+                  <p class="text-xs text-gray-500">Supervisão química e normas sanitárias em conformidade</p>
+                </div>
+              </div>
+              <ul class="text-gray-700 space-y-2 border-t border-neutral-200 pt-3 text-xs sm:text-sm">
+                <li><strong>• Responsável Técnico Químico:</strong> Mário Henrique Nunes Peres (CRQ: 02200413)</li>
+                <li><strong>• Notificação Sanitária:</strong> Isento de registro em conformidade com a <strong>RDC 240/2018 da ANVISA</strong></li>
+                <li><strong>• Distribuição & Operação:</strong> ROGERIO OLIVEIRA DA SILVA (CNPJ: 62.471.607/0001-07)</li>
+                <li><strong>• Modo de Uso:</strong> Apenas 1 cápsula ao dia pela manhã com água.</li>
+              </ul>
+            </div>
+
+            <h2 class="text-2xl font-black text-gray-950 mt-10 mb-4 font-sans tracking-tight">
+              Ação Inédita: Pagamento Realizado Apenas no Ato da Entrega
+            </h2>
+
+            <p>
+              Muitos homens com mais de 50 anos evitam comprar pela internet por receio de golpes, cartões clonados ou encomendas que nunca chegam à porta de casa.
+            </p>
+
+            <p>
+              Para assegurar total tranquilidade ao público, a distribuidora oficial do Alphasin implementou no Brasil a modalidade de <strong>Pagamento na Entrega (Pay After Delivery)</strong>.
+            </p>
+
+            <figure class="my-6 not-italic">
+              <img src="images/delivery_package.jpg" alt="Instalações fabris e centro logístico oficial do Alphasin" class="w-full h-auto max-h-[420px] object-cover rounded-2xl shadow-md border border-gray-200">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                Complexo fabril e centro logístico oficial do Alphasin: infraestrutura industrial autorizada sob a RDC 240/2018 da ANVISA e despacho com pagamento presencial no ato da entrega. (Foto: Divulgação Institucional)
+              </figcaption>
+            </figure>
+
+            <!-- Passo a Passo da Compra Segura -->
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 my-8 font-sans not-italic shadow-sm">
+              <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span class="w-3 h-3 bg-[#CC0000] rounded-sm"></span>
+                Como funciona a sua segurança garantida:
+              </h3>
+              <ol class="space-y-4 text-gray-700 text-xs sm:text-sm">
+                <li class="flex items-start gap-3">
+                  <span class="font-bold text-base bg-red-100 text-[#CC0000] rounded-full w-6 h-6 flex items-center justify-center shrink-0">1</span>
+                  <span><strong>Consulta pelo WhatsApp:</strong> Você clica no botão abaixo e é atendido diretamente pela central de distribuição para informar seu CEP.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="font-bold text-base bg-red-100 text-[#CC0000] rounded-full w-6 h-6 flex items-center justify-center shrink-0">2</span>
+                  <span><strong>Envio Discreto:</strong> O produto é despachado em embalagem neutra (sem qualquer menção íntima no exterior).</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="font-bold text-base bg-red-100 text-[#CC0000] rounded-full w-6 h-6 flex items-center justify-center shrink-0">3</span>
+                  <span><strong>Pagamento no Portão:</strong> Você só paga quando o entregador estiver com o pacote na sua mão (via Pix, dinheiro ou cartão). Risco financeiro zero.</span>
+                </li>
+              </ol>
+            </div>
+
+            <!-- CTA MATÉRIA 1 -->
+            <div class="my-10 p-6 sm:p-8 bg-white border-2 border-[#CC0000] rounded-2xl shadow-xl text-center not-italic font-sans">
+              <div class="inline-flex items-center gap-1.5 bg-red-50 text-[#CC0000] text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full mb-3 border border-red-200">
+                <span class="w-2 h-2 rounded-full bg-[#CC0000] animate-ping"></span>
+                Central Oficial de Distribuição
+              </div>
+              <h3 class="text-xl sm:text-2xl font-black text-gray-950 mb-2">
+                Verificar Cobertura de Entrega no WhatsApp
+              </h3>
+              <p class="text-gray-600 text-xs sm:text-sm max-w-md mx-auto mb-6">
+                Tire suas dúvidas técnicas com um atendente autorizado e agende seu pedido para pagar somente quando a encomenda chegar.
+              </p>
+
+              <a 
+                href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Li%20a%20mat%C3%A9ria%20de%20Investiga%C3%A7%C3%A3o%20do%20Portal%20Sa%C3%BAde%20e%20Ci%C3%AAncia%20sobre%20o%20Alphasin%20e%20gostaria%20de%20verificar%20a%20disponibilidade%20de%20envio%20com%20PAGAMENTO%20NA%20ENTREGA." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-press inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base sm:text-lg px-8 py-4 rounded-xl shadow-lg w-full sm:w-auto uppercase tracking-wide"
+              >
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                CONSULTAR MEU CEP NO WHATSAPP
+              </a>
+
+              <div class="mt-4 text-xs text-gray-500 flex flex-wrap items-center justify-center gap-4">
+                <span>🔒 Atendimento Seguro</span>
+                <span>📦 Embalagem Discreta</span>
+                <span>💵 Pague no Recebimento</span>
+              </div>
+            </div>
+
+          </article>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- MATÉRIA 2: UROLOGIA (FOCO CLÍNICO & MECÂNICO DO FLUXO) -->
+        <!-- ======================================================= -->
+        <section id="tab-urologia" class="article-tab hidden">
+          
+          <nav aria-label="Breadcrumb" class="flex items-center text-[11px] font-extrabold uppercase tracking-wider mb-3 text-gray-500">
+            <span class="text-[#CC0000] font-black">SAÚDE & CIÊNCIA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-700">ESPECIAL UROLOGIA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-400 font-medium">MECANISMO FISIOLÓGICO</span>
+          </nav>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-[36px] font-black text-gray-950 leading-[1.18] tracking-tight mb-4">
+            O efeito mecânico da compressão da uretra: Especialistas explicam por que o jato fica fraco e a bexiga não esvazia
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-6 font-serif">
+            Relatório técnico detalha como a ação desinflamatória da Cúrcuma Longa e da Semente de Uva desobstrui a passagem urinária sem agredir o organismo com efeitos colaterais.
+          </p>
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-y border-gray-200 py-3.5 mb-8 gap-3 text-xs text-gray-500">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[#CC0000] text-white flex items-center justify-center font-black text-xs">
+                UR
+              </div>
+              <div>
+                <div class="font-bold text-gray-900 text-[13px]">Por Caderno de Urologia & Pesquisa</div>
+                <div class="text-gray-500 text-[11px]">Análise Bioquímica Celular</div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between sm:justify-end gap-4 text-[11.5px]">
+              <div><span class="text-gray-400">Atualizado:</span> <strong class="text-gray-800 current-date-display">Hoje</strong></div>
+              <span class="text-gray-300">•</span>
+              <div class="text-gray-600">Leitura: 4 min</div>
+            </div>
+          </div>
+
+          <article class="article-body">
+            
+            <p class="lead-paragraph">
+              Para entender por que o homem sente desconforto, gotejamento involuntário e a sensação aflitiva de bexiga pesada, é preciso olhar para a anatomia: a próstata tem formato de noz e fica posicionada exatamente ao redor da uretra.
+            </p>
+
+            <p>
+              Quando as células sofrem estresse oxidativo constante, o tecido incha para dentro. <strong>É uma barreira física real:</strong> a uretra é espremida, e os músculos da bexiga precisam fazer até cinco vezes mais força para empurrar a urina.
+            </p>
+
+            <figure class="my-6 not-italic">
+              <img src="images/anatomidadaprostata.jpeg" alt="Diagrama clínico de compressão da uretra pela próstata aumentada" class="w-full h-auto max-h-[420px] object-contain bg-white rounded-2xl shadow-md border border-gray-200 p-2 sm:p-4">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                Demonstração clínica urológica: à esquerda, fluxo desimpedido; à direita, a próstata aumentada gerando compressão mecânica e retenção urinária. (Ilustração: Caderno de Urologia & Pesquisa)
+              </figcaption>
+            </figure>
+
+            <div class="bg-red-50 border-l-4 border-[#CC0000] p-5 rounded-r-lg my-6 not-italic font-sans text-sm">
+              <strong class="text-red-950 block text-base mb-1">Por que abordagens convencionais causam desânimo e fraqueza?</strong>
+              Muitos métodos tradicionais apenas relaxam a musculatura lisa superficialmente, trazendo como efeito adverso queda drástica na pressão arterial, tontura ao levantar e desânimo físico. Por isso, a urologia moderna tem priorizado compostos bioativos padronizados de alta tolerabilidade celular.
+            </div>
+
+            <h3 class="text-xl font-black text-gray-950 mt-8 mb-3 font-sans">Ação Anti-Edema dos Polifenóis do Alphasin</h3>
+            <p>
+              Ao combinar os curcuminoides da <strong>Cúrcuma Longa</strong> com as proantocianidinas da <strong>Semente de Uva</strong>, o Alphasin atua inibindo os mediadores inflamatórios locais. Com o alívio do inchaço, a passagem é liberada, permitindo que a urina flua com força contínua e a bexiga se esvazie por completo logo na primeira ida ao banheiro.
+            </p>
+
+            <p>
+              O tratamento é prático: apenas <strong>1 cápsula ao dia</strong>, notificado sob a <strong>RDC 240/2018 da Anvisa</strong> e assinado pelo químico responsável Mário Henrique Peres (CRQ: 02200413).
+            </p>
+
+            <!-- CTA MATÉRIA 2 -->
+            <div class="my-8 p-6 bg-white border-2 border-[#CC0000] rounded-2xl text-center not-italic font-sans shadow-lg">
+              <h3 class="text-xl font-black text-gray-950 mb-2">Consulte a Disponibilidade do Tratamento Urológico</h3>
+              <p class="text-gray-600 text-sm max-w-md mx-auto mb-5">
+                Solicite seu kit com pagamento facilitado no ato da entrega diretamente com nossa central autorizada no WhatsApp.
+              </p>
+              <a 
+                href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Li%20o%20artigo%20de%20Urologia%20do%20Portal%20Sa%C3%BAde%20e%20Ci%C3%AAncia%20e%20meu%20problema%20%C3%A9%20o%20jato%20fraco%20e%20a%20bexiga%20cheia.%20Gostaria%20de%20pedir%20o%20Alphasin%20com%20PAGAMENTO%20NA%20ENTREGA." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-press inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base px-7 py-4 rounded-xl shadow-md uppercase tracking-wide"
+              >
+                Falar com Atendimento de Urologia no WhatsApp
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- MATÉRIA 3: LONGEVIDADE (SONO REM, DISPOSIÇÃO & VIGOR) -->
+        <!-- ======================================================= -->
+        <section id="tab-longevidade" class="article-tab hidden">
+          
+          <nav aria-label="Breadcrumb" class="flex items-center text-[11px] font-extrabold uppercase tracking-wider mb-3 text-gray-500">
+            <span class="text-[#CC0000] font-black">SAÚDE & CIÊNCIA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-700">LONGEVIDADE ATIVA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-400 font-medium">VIGOR & VITALIDADE MASCULINA</span>
+          </nav>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-[36px] font-black text-gray-950 leading-[1.18] tracking-tight mb-4">
+            A conexão oculta entre a próstata inflamada e a perda de energia física após os 50 anos
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-6 font-serif">
+            Como a restauração do sono profundo contínuo e a microcirculação pélvica reativam a autoconfiança, a força diária e a vitalidade do homem maduro.
+          </p>
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-y border-gray-200 py-3.5 mb-8 gap-3 text-xs text-gray-500">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[#CC0000] text-white flex items-center justify-center font-black text-xs">
+                LV
+              </div>
+              <div>
+                <div class="font-bold text-gray-900 text-[13px]">Por Redação Longevidade Saudável</div>
+                <div class="text-gray-500 text-[11px]">Saúde Integral do Homem 45+</div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between sm:justify-end gap-4 text-[11.5px]">
+              <div><span class="text-gray-400">Atualizado:</span> <strong class="text-gray-800 current-date-display">Hoje</strong></div>
+              <span class="text-gray-300">•</span>
+              <div class="text-gray-600">Leitura: 3 min</div>
+            </div>
+          </div>
+
+          <article class="article-body">
+            <p class="lead-paragraph">
+              Muitos homens com mais de 50 anos notam que a disposição física e o ânimo diário não são mais os mesmos. O que poucos sabem é que esse quadro está intimamente conectado a dois fatores ignorados: <strong>o sono fragmentado e a microcirculação pélvica estagnada</strong>.
+            </p>
+
+            <p>
+              É durante a fase REM do sono profundo (que ocorre entre a 4ª e 6ª hora ininterrupta de repouso) que o corpo masculino sintetiza a maior parte dos hormônios da vitalidade e da regeneração celular. Quando você acorda a cada 90 minutos para ir ao banheiro, essa produção despenca para níveis críticos.
+            </p>
+
+            <div class="bg-gray-50 border border-gray-200 p-5 rounded-xl my-6 not-italic font-sans text-sm">
+              <h4 class="font-bold text-gray-900 text-base mb-2">O Papel Vital das Vitaminas B6, B12, D e E</h4>
+              <p class="text-gray-700 leading-relaxed mb-0">
+                A presença de <strong>Vitamina B6 e B12</strong> no Alphasin atua na síntese de neurotransmissores e no metabolismo energético mitocondrial, enquanto a <strong>Vitamina D e E</strong> atuam na renovação celular e na proteção das membranas. O resultado é o fim da sensação de fadiga contínua e a recuperação do vigor masculino.
+              </p>
+            </div>
+
+            <p>
+              Não se trata apenas de ir menos vezes ao banheiro: trata-se de resgatar a sensação de vitalidade, o bom humor matinal e a segurança no convívio familiar.
+            </p>
+
+            <figure class="my-6 not-italic">
+              <img src="images/mature_man_active.jpeg" alt="Homem maduro brasileiro com vigor físico e disposição diária recuperada em caminhada matinal" class="w-full h-auto max-h-[420px] object-cover rounded-2xl shadow-md border border-gray-200">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                A recuperação da qualidade do sono e a circulação livre devolvem o vigor físico, o ânimo diário e a disposição aos homens acima dos 50 anos. (Foto: Caderno Longevidade Ativa / GCS Saúde)
+              </figcaption>
+            </figure>
+
+            <!-- CTA MATÉRIA 3 -->
+            <div class="my-8 p-6 bg-white border-2 border-[#CC0000] rounded-2xl text-center not-italic font-sans shadow-lg">
+              <h3 class="text-xl font-black text-gray-950 mb-2">Recupere sua Vitalidade com Pagamento na Entrega</h3>
+              <p class="text-gray-600 text-sm max-w-md mx-auto mb-5">
+                Sem cadastro de cartão antecipado. Pague somente ao receber a caixa lacrada no portão de casa.
+              </p>
+              <a 
+                href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Li%20a%20mat%C3%A9ria%20de%20Longevidade%20e%20Vigor%20do%20Portal%20Sa%C3%BAde%20e%20Ci%C3%AAncia%20e%20quero%20agendar%20meu%20pedido%20para%20PAGAR%20NA%20ENTREGA." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-press inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base px-7 py-4 rounded-xl shadow-md uppercase tracking-wide"
+              >
+                Quero Mais Disposição - Atendimento WhatsApp
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- MATÉRIA 4: CHECAGEM (FATO OU BOATO / SEGURANÇA TOTAL) -->
+        <!-- ======================================================= -->
+        <section id="tab-checagem" class="article-tab hidden">
+          
+          <nav aria-label="Breadcrumb" class="flex items-center text-[11px] font-extrabold uppercase tracking-wider mb-3 text-gray-500">
+            <span class="text-[#CC0000] font-black">SAÚDE & CIÊNCIA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-700">CHECAGEM INDEPENDENTE DO CONSUMIDOR</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-400 font-medium">SEGURANÇA DO CONSUMIDOR</span>
+          </nav>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-[36px] font-black text-gray-950 leading-[1.18] tracking-tight mb-4">
+            Checagem: É verdade que é possível pedir o Alphasin e só pagar quando o entregador chegar em casa?
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-6 font-serif">
+            Nossa equipe de auditoria documental verificou as licenças sanitárias, o registro do químico responsável e o sistema logístico antifraude para homens da terceira idade.
+          </p>
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-y border-gray-200 py-3.5 mb-8 gap-3 text-xs text-gray-500">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-emerald-700 text-white flex items-center justify-center font-black text-xs">
+                FATO
+              </div>
+              <div>
+                <div class="font-bold text-gray-900 text-[13px]">Por Checagem Independente do Consumidor</div>
+                <div class="text-gray-500 text-[11px]">Veredito Oficial: VERDADEIRO</div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between sm:justify-end gap-4 text-[11.5px]">
+              <div><span class="text-gray-400">Atualizado:</span> <strong class="text-gray-800 current-date-display">Hoje</strong></div>
+              <span class="text-gray-300">•</span>
+              <div class="text-gray-600">Leitura: 3 min</div>
+            </div>
+          </div>
+
+          <article class="article-body">
+            
+            <div class="bg-emerald-50 border-2 border-emerald-500 rounded-xl p-5 mb-8 not-italic font-sans">
+              <div class="flex items-center gap-3">
+                <span class="bg-emerald-600 text-white text-xs font-black px-3 py-1 rounded uppercase">VEREDITO: FATO</span>
+                <span class="font-bold text-gray-900 text-sm">A modalidade de pagamento na entrega é 100% real e auditada.</span>
+              </div>
+              <p class="text-gray-700 text-sm mt-2 mb-0">
+                Homens acima de 50 anos relatam que o sistema de pagamento no portão foi decisivo para realizar o pedido sem medo de golpes na internet.
+              </p>
+            </div>
+
+            <p class="lead-paragraph">
+              Com o aumento expressivo de fraudes em sites falsos que roubam dados de cartões de aposentados e pensionistas, a distribuidora do Alphasin adotou um modelo logístico inverso: <strong>o cliente não paga absolutamente nada adiantado</strong>.
+            </p>
+
+            <h3 class="text-xl font-black text-gray-950 mt-8 mb-3 font-sans">Checagem dos Dados Oficiais da Empresa</h3>
+            <div class="overflow-x-auto my-4 not-italic font-sans text-xs sm:text-sm">
+              <table class="min-w-full bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-gray-800 bg-gray-50 w-1/3">Empresa Distribuidora</td>
+                    <td class="px-4 py-3 text-gray-600">ROGERIO OLIVEIRA DA SILVA (CNPJ: 62.471.607/0001-07)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-gray-800 bg-gray-50">Responsável Técnico</td>
+                    <td class="px-4 py-3 text-gray-600">Mário Henrique Nunes Peres (CRQ: 02200413)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-gray-800 bg-gray-50">Conformidade Anvisa</td>
+                    <td class="px-4 py-3 text-gray-600">Isento de registro sanitário conf. RDC 240/2018</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-gray-800 bg-gray-50">Discrição da Embalagem</td>
+                    <td class="px-4 py-3 text-gray-600">Caixa parda lacrada sem identificação externa</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <figure class="my-6 not-italic">
+              <img src="images/delivery_package.jpg" alt="Sede fabril e centro de distribuição oficial do Alphasin" class="w-full h-auto max-h-[400px] object-cover rounded-2xl shadow-md border border-gray-200">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                Checagem de Procedência: parque fabril do Alphasin opera sob conformidade sanitária da ANVISA (RDC 240/2018) e regularidade fiscal registrada sob o CNPJ 62.471.607/0001-07. (Foto: Checagem Independente do Consumidor)
+              </figcaption>
+            </figure>
+
+            <p>
+              Nossa checagem confirmou que o atendimento no WhatsApp é conduzido por consultores de logística que apenas solicitam o CEP para traçar a rota com o entregador local credenciado. Ao receber o pacote, o cliente pode pagar com Pix, cartão na maquininha ou dinheiro vivo.
+            </p>
+
+            <!-- CTA MATÉRIA 4 -->
+            <div class="my-8 p-6 bg-white border-2 border-[#CC0000] rounded-2xl text-center not-italic font-sans shadow-lg">
+              <h3 class="text-xl font-black text-gray-950 mb-2">Faça seu Pedido com Risco Zero Garantido</h3>
+              <p class="text-gray-600 text-sm max-w-md mx-auto mb-5">
+                Clique no botão abaixo para verificar a cobertura do seu CEP diretamente na central de apoio oficial.
+              </p>
+              <a 
+                href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Li%20a%20mat%C3%A9ria%20de%20Checagem%20do%20Portal%20Sa%C3%BAde%20e%20Ci%C3%AAncia%20sobre%20o%20Alphasin%20e%20gostaria%20de%20solicitar%20o%20envio%20com%20PAGAMENTO%20NA%20ENTREGA." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-press inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base px-7 py-4 rounded-xl shadow-md uppercase tracking-wide"
+              >
+                Verificar Cobertura do Meu CEP no WhatsApp
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- MATÉRIA 5: ÚLTIMAS (PLANTÃO DE NOTÍCIAS & ALERTA DE LOTE) -->
+        <!-- ======================================================= -->
+        <section id="tab-ultimas" class="article-tab hidden">
+          
+          <nav aria-label="Breadcrumb" class="flex items-center text-[11px] font-extrabold uppercase tracking-wider mb-3 text-gray-500">
+            <span class="text-[#CC0000] font-black">SAÚDE & CIÊNCIA</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-700">PLANTÃO ÚLTIMAS NOTÍCIAS</span>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-400 font-medium">LOGÍSTICA & DISTRIBUIÇÃO</span>
+          </nav>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-[36px] font-black text-gray-950 leading-[1.18] tracking-tight mb-4">
+            Últimas Atualizações: Distribuidora confirma liberação de lote com frete prioritário e pagamento apenas na entrega
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-6 font-serif">
+            Devido à alta demanda gerada pela divulgação clínica, central de logística abre canal direto no WhatsApp para gerenciar pedidos com garantia de valor de fábrica.
+          </p>
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-y border-gray-200 py-3.5 mb-8 gap-3 text-xs text-gray-500">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-red-800 text-white flex items-center justify-center font-black text-xs">
+                PL
+              </div>
+              <div>
+                <div class="font-bold text-gray-900 text-[13px]">Plantão em Tempo Real • Logística Nacional</div>
+                <div class="text-gray-500 text-[11px]">Atualização em tempo contínuo</div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between sm:justify-end gap-4 text-[11.5px]">
+              <div><span class="text-gray-400">Atualizado:</span> <strong class="text-gray-800 current-date-display">Hoje</strong></div>
+              <span class="text-gray-300">•</span>
+              <div class="text-gray-600">Leitura: 2 min</div>
+            </div>
+          </div>
+
+          <article class="article-body">
+            <p class="lead-paragraph">
+              A central nacional de distribuição confirmou nesta manhã a abertura de um lote extraordinário com cobertura de frete prioritário e modalidade de <strong>pagamento direto ao entregador</strong>.
+            </p>
+
+            <p>
+              Mais de 12.000 homens já aderiram ao protocolo nas últimas semanas para recuperar a força do fluxo urinário e encerrar os despertares noturnos que esgotavam a rotina de trabalho.
+            </p>
+
+            <figure class="my-6 not-italic">
+              <img src="images/suplementonabancada.jpeg" alt="Lote oficial do Alphasin com fórmula original liberado para entrega" class="w-full h-auto max-h-[400px] object-cover rounded-2xl shadow-md border border-gray-200">
+              <figcaption class="text-xs text-gray-500 mt-2 text-center italic font-sans">
+                Frascos do lote oficial com bioativos padronizados e lacre de segurança prontos para expedição com pagamento na entrega. (Foto: Central de Logística)
+              </figcaption>
+            </figure>
+
+            <div class="bg-amber-50 border-l-4 border-amber-600 p-5 rounded-r-lg my-6 not-italic font-sans text-sm">
+              <strong class="text-amber-950 block text-base mb-1">Aviso da Central de Envio:</strong>
+              Para assegurar que o leitor receba a embalagem lacrada sem intermediários ou sobrepreço de farmácias de manipulação, os pedidos devem ser confirmados com o atendente credenciado no WhatsApp.
+            </div>
+
+            <!-- CTA MATÉRIA 5 -->
+            <div class="my-8 p-6 bg-white border-2 border-[#CC0000] rounded-2xl text-center not-italic font-sans shadow-lg">
+              <h3 class="text-xl font-black text-gray-950 mb-2">Garantir Envio do Lote Atual com Pagamento no Portão</h3>
+              <p class="text-gray-600 text-sm max-w-md mx-auto mb-5">
+                Envie uma mensagem imediata para a central de atendimento para reservar o seu pacote com as condições especiais de frete.
+              </p>
+              <a 
+                href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vi%20as%20%C3%9Altimas%20Not%C3%ADcias%20do%20Portal%20Sa%C3%BAde%20e%20Ci%C3%AAncia%20sobre%20o%20lote%20do%20Alphasin%20e%20gostaria%20de%20garantir%20meu%20pedido%20com%20PAGAMENTO%20NA%20ENTREGA." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-press inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base px-7 py-4 rounded-xl shadow-md uppercase tracking-wide"
+              >
+                Garantir Vaga no Lote pelo WhatsApp
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- BLOCO EDITORIAL DE REPORTAGENS RELACIONADAS (PORTAL) -->
+        <!-- ======================================================= -->
+        <section class="border-t-2 border-gray-200 pt-8 mt-12 not-italic font-sans">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="font-black text-gray-950 text-base sm:text-lg uppercase tracking-wider flex items-center gap-2">
+              <span class="w-2.5 h-2.5 bg-[#CC0000]"></span>
+              Cadernos Especiais de Saúde
+            </h3>
+            <span class="text-xs text-gray-400 font-semibold">Navegue pelas matérias</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Card 1 -->
+            <div onclick="switchTab('urologia')" class="cursor-pointer group bg-white border border-gray-200 rounded-xl p-4 hover:border-[#CC0000] hover:shadow-md transition-all">
+              <span class="text-[10px] font-black text-[#CC0000] uppercase tracking-wider block mb-1">Urologia</span>
+              <h4 class="font-bold text-gray-900 text-sm leading-snug group-hover:text-[#CC0000] transition-colors">
+                O efeito mecânico da compressão da uretra masculina
+              </h4>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">Entenda por que o inchaço celular comprime o fluxo e causa o gotejamento.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div onclick="switchTab('longevidade')" class="cursor-pointer group bg-white border border-gray-200 rounded-xl p-4 hover:border-[#CC0000] hover:shadow-md transition-all">
+              <span class="text-[10px] font-black text-[#CC0000] uppercase tracking-wider block mb-1">Longevidade</span>
+              <h4 class="font-bold text-gray-900 text-sm leading-snug group-hover:text-[#CC0000] transition-colors">
+                A conexão oculta entre a próstata e a vitalidade física aos 50 anos
+              </h4>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">O sono profundo contínuo é o principal regenerador da energia do homem maduro.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div onclick="switchTab('checagem')" class="cursor-pointer group bg-white border border-gray-200 rounded-xl p-4 hover:border-[#CC0000] hover:shadow-md transition-all">
+              <span class="text-[10px] font-black text-emerald-700 uppercase tracking-wider block mb-1">Checagem</span>
+              <h4 class="font-bold text-gray-900 text-sm leading-snug group-hover:text-emerald-700 transition-colors">
+                Fato ou Boato: É verdade que você só paga ao receber o pacote?
+              </h4>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">Checagem documental da distribuidora (CNPJ: 62.471.607/0001-07), CRQ e conformidade sanitária.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- CONSULTA DE ROTA DE ENTREGA NO WHATSAPP (PRAZO REAL: 7 A 10 DIAS) -->
+        <!-- ======================================================= -->
+        <div class="my-10 p-6 sm:p-7 bg-gradient-to-br from-neutral-900 to-neutral-950 text-white rounded-2xl shadow-xl font-sans not-italic border border-neutral-800">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[11px] font-extrabold uppercase tracking-widest text-neutral-300">Central de Distribuição e Envio</span>
+          </div>
+          
+          <h3 class="text-lg sm:text-xl font-black text-white mb-2">
+            Consulte a Cobertura de Pagamento no Portão para o seu CEP
+          </h3>
+          
+          <p class="text-xs text-neutral-300 mb-5 max-w-xl leading-relaxed">
+            A confirmação de rota com pagamento no ato da entrega é verificada na hora pelo consultor de logística no WhatsApp. Para rotas liberadas, o prazo médio de entrega é de <strong>7 a 10 dias úteis</strong> em caixa 100% neutra e sigilosa.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <div class="relative flex-1">
+              <input 
+                type="text" 
+                id="cep-input" 
+                maxlength="9" 
+                placeholder="Digite seu CEP (ex: 21545-330)" 
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all font-mono"
+              />
+            </div>
+            <button 
+              type="button" 
+              id="btn-check-cep"
+              class="btn-press bg-[#CC0000] hover:bg-red-700 text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider flex items-center justify-center gap-2 shrink-0 shadow-lg"
+            >
+              <span>Checar Rota no WhatsApp</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+          </div>
+
+          <div class="mt-4 text-[11px] text-neutral-400 flex flex-wrap items-center gap-4">
+            <span class="flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Prazo médio: 7 a 10 dias úteis</span>
+            <span class="flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Pagamento em mãos no ato da entrega</span>
+            <span class="flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Caixa descaracterizada e discreta</span>
+          </div>
+        </div>
+
+        <!-- ======================================================= -->
+        <!-- PROVA SOCIAL COM COMENTÁRIOS VERIFICADOS -->
+        <!-- ======================================================= -->
+        <section class="border-t border-gray-200 pt-8 mt-10 not-italic font-sans">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-black text-gray-950 text-base sm:text-lg flex items-center gap-2">
+              <svg class="w-5 h-5 text-[#CC0000]" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zm-5 0h-2v2h2V9z" clip-rule="evenodd"></path>
+              </svg>
+              Comentários dos Leitores (18)
+            </h3>
+            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded">
+              ✓ Comentários Verificados
+            </span>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Comentário 1 -->
+            <div class="p-4 sm:p-5 bg-neutral-50/70 rounded-xl border border-gray-200">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-3">
+                  <img src="images/avatar_antonio.jpg" alt="Antônio Marcos Ribeiro" class="w-10 h-10 rounded-full object-cover border border-gray-300 shadow-sm shrink-0">
+                  <div>
+                    <span class="font-bold text-gray-900 text-sm block">Antônio Marcos Ribeiro, 56 anos</span>
+                    <span class="text-[11px] text-gray-500">Belo Horizonte - MG • Compra Verificada</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-400">Há 2 horas</span>
+              </div>
+              <p class="text-gray-700 text-xs sm:text-sm leading-relaxed mb-3">
+                Eu acordava 4 a 5 vezes por noite, parecia um tormento. Não conseguia viajar de carro porque tinha que parar a cada posto. O que mais me convenceu foi pagar só na hora que a caixa chegou aqui em casa. Paguei no Pix pro entregador. Já estou na terceira semana tomando 1 cápsula de manhã e hoje já durmo a noite toda direto. O fluxo voltou forte e natural.
+              </p>
+              <div class="flex items-center gap-4 text-xs text-gray-500">
+                <button type="button" class="like-btn flex items-center gap-1 hover:text-[#CC0000] transition-colors" data-likes="48">
+                  <span>👍</span> <span class="like-count font-semibold">48</span>
+                </button>
+                <span>•</span>
+                <span class="cursor-pointer hover:underline">Responder</span>
+              </div>
+            </div>
+
+            <!-- Comentário 2 -->
+            <div class="p-4 sm:p-5 bg-neutral-50/70 rounded-xl border border-gray-200">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-3">
+                  <img src="images/avatar_jose.jpg" alt="José Sebastião Duarte" class="w-10 h-10 rounded-full object-cover border border-gray-300 shadow-sm shrink-0">
+                  <div>
+                    <span class="font-bold text-gray-900 text-sm block">José Sebastião Duarte, 62 anos</span>
+                    <span class="text-[11px] text-gray-500">Campinas - SP • Compra Verificada</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-400">Há 5 horas</span>
+              </div>
+              <p class="text-gray-700 text-xs sm:text-sm leading-relaxed mb-3">
+                Tenho muito receio de comprar na internet porque já clonaram meu cartão antes. Quando a moça no WhatsApp me disse que eu só pagava quando o rapaz batesse no meu portão, resolvi pedir o kit com 3 frascos. A caixa é marrom sem nada escrito por fora, muito discreta. Minha disposição física e a energia no dia a dia mudaram completamente. Recomendo demais!
+              </p>
+              <div class="flex items-center gap-4 text-xs text-gray-500">
+                <button type="button" class="like-btn flex items-center gap-1 hover:text-[#CC0000] transition-colors" data-likes="35">
+                  <span>👍</span> <span class="like-count font-semibold">35</span>
+                </button>
+                <span>•</span>
+                <span class="cursor-pointer hover:underline">Responder</span>
+              </div>
+            </div>
+
+            <!-- Comentário 3 -->
+            <div class="p-4 sm:p-5 bg-neutral-50/70 rounded-xl border border-gray-200">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-3">
+                  <img src="images/avatar_carlos.jpg" alt="Carlos Lacerda" class="w-10 h-10 rounded-full object-cover border border-gray-300 shadow-sm shrink-0">
+                  <div>
+                    <span class="font-bold text-gray-900 text-sm block">Carlos Lacerda, 49 anos</span>
+                    <span class="text-[11px] text-gray-500">Curitiba - PR • Compra Verificada</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-400">Ontem</span>
+              </div>
+              <p class="text-gray-700 text-xs sm:text-sm leading-relaxed mb-3">
+                Essa matéria me ajudou a entender o que realmente estava acontecendo. Eu achava que era só idade, mas o inchaço espremia o canal. O atendimento no WhatsApp foi rápido, passei meu CEP e em 8 dias a transportadora me entregou a caixa lacrada. Paguei na maquininha de cartão no portão. Valeu cada centavo.
+              </p>
+              <div class="flex items-center gap-4 text-xs text-gray-500">
+                <button type="button" class="like-btn flex items-center gap-1 hover:text-[#CC0000] transition-colors" data-likes="21">
+                  <span>👍</span> <span class="like-count font-semibold">21</span>
+                </button>
+                <span>•</span>
+                <span class="cursor-pointer hover:underline">Responder</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- COLUNA LATERAL FIXA (SIDEBAR NOTICIOSA 4 COLUNAS) -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="sticky top-20 space-y-6">
+          
+          <!-- Card de Plantão no WhatsApp -->
+          <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span class="text-xs font-black uppercase tracking-wider text-gray-900">Plantão de Atendimento</span>
+              </div>
+              <span class="text-[10px] text-gray-400 font-mono">Disponível</span>
+            </div>
+            
+            <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+              Consulte agora a cobertura de envio para seu CEP e tire suas dúvidas técnicas diretamente com um atendente oficial no WhatsApp.
+            </p>
+
+            <a 
+              id="sidebar-whatsapp-btn"
+              href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20a%20disponibilidade%20do%20Alphasin%20com%20PAGAMENTO%20NA%20ENTREGA." 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="btn-press w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 uppercase tracking-wider shadow-md"
+            >
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              <span>CHAMAR NO WHATSAPP</span>
+            </a>
+
+            <div class="mt-3 text-[10.5px] text-gray-400 text-center flex items-center justify-center gap-2">
+              <span>🔒 Criptografia e Sigilo Garantidos</span>
+            </div>
+          </div>
+
+          <!-- Box de Checagem Rápida -->
+          <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-gray-900 mb-3">
+              <span class="bg-[#CC0000] text-white px-2 py-0.5 rounded text-[10px]">CHECAGEM</span>
+              <span>Fato ou Boato</span>
+            </div>
+            <div class="space-y-3 text-xs">
+              <div class="border-b border-gray-100 pb-2.5">
+                <p class="font-bold text-gray-900 mb-1">"É verdade que acordar 3x por noite é normal da idade?"</p>
+                <p class="text-gray-600"><span class="text-red-600 font-bold">FALSO.</span> É sinal mecânico de inchaço e compressão do canal urinário.</p>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 mb-1">"Posso pagar apenas na entrega sem passar cartão?"</p>
+                <p class="text-gray-600"><span class="text-emerald-700 font-bold">VERDADE.</span> O programa Alphasin garante pagamento presencial no portão.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mais Lidas no Portal -->
+          <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+            <h4 class="text-xs font-black uppercase tracking-wider text-gray-900 mb-4 flex items-center justify-between">
+              <span>Mais Lidas em Saúde</span>
+              <span class="text-[#CC0000] font-black">•</span>
+            </h4>
+            <div class="space-y-3.5 text-xs">
+              <button type="button" onclick="switchTab('longevidade')" class="text-left group block w-full">
+                <span class="text-[#CC0000] font-black text-xs mr-1">1</span>
+                <span class="font-semibold text-gray-800 group-hover:text-red-700 transition-colors">Estudo avalia impacto da privação de sono nos níveis de disposição física aos 50 anos</span>
+              </button>
+              <button type="button" onclick="switchTab('urologia')" class="text-left group block w-full border-t border-gray-100 pt-2.5">
+                <span class="text-[#CC0000] font-black text-xs mr-1">2</span>
+                <span class="font-semibold text-gray-800 group-hover:text-red-700 transition-colors">Polifenóis e fitoterápicos ganham espaço em protocolos urológicos modernos</span>
+              </button>
+              <button type="button" onclick="switchTab('checagem')" class="text-left group block w-full border-t border-gray-100 pt-2.5">
+                <span class="text-[#CC0000] font-black text-xs mr-1">3</span>
+                <span class="font-semibold text-gray-800 group-hover:text-red-700 transition-colors">Entenda como a modalidade de pagamento na entrega revolucionou o e-commerce de saúde</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <!-- RODAPÉ TÉCNICO EDITORIAL E JURÍDICO COMPLETO (COMPLIANCE TOTAL TABOOLA) -->
+  <footer class="bg-neutral-900 text-neutral-400 mt-16 pt-12 pb-24 border-t border-neutral-800 text-xs">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <div class="bg-[#CC0000] px-2.5 py-0.5 font-black text-lg tracking-tighter text-white uppercase" style="letter-spacing: -1.5px;">GCS</div>
+            <span class="font-extrabold text-sm text-white">SAÚDE & CIÊNCIA</span>
+          </div>
+          <p class="text-neutral-500 leading-relaxed text-[11px]">
+            Portal editorial independente dedicado à divulgação científica de saúde masculina, nutrição celular e longevidade.
+          </p>
+        </div>
+
+        <div>
+          <h5 class="text-white font-bold uppercase tracking-wider mb-3 text-[11px]">Navegação Editorial</h5>
+          <ul class="space-y-2 text-[11px]">
+            <li><button onclick="switchTab('investigacao')" class="hover:text-white transition">Investigação Principal</button></li>
+            <li><button onclick="switchTab('urologia')" class="hover:text-white transition">Caderno de Urologia</button></li>
+            <li><button onclick="switchTab('longevidade')" class="hover:text-white transition">Vigor & Vitalidade</button></li>
+            <li><button onclick="switchTab('checagem')" class="hover:text-white transition">Checagem de Fatos (Segurança)</button></li>
+            <li><button onclick="switchTab('ultimas')" class="hover:text-white transition">Plantão de Notícias</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="text-white font-bold uppercase tracking-wider mb-3 text-[11px]">Identificação e Suporte</h5>
+          <p class="text-neutral-500 leading-relaxed mb-2 text-[11px]">
+            Distribuição e Operação Oficial: <strong>ROGERIO OLIVEIRA DA SILVA</strong><br>
+            CNPJ: 62.471.607/0001-07<br>
+            Responsável Técnico Químico: Mário Henrique Nunes Peres (CRQ: 02200413)
+          </p>
+          <p class="text-neutral-500 text-[11px]">
+            Canal de Atendimento: <a href="mailto:suporte@distribuicaoalphasin.com.br" class="text-neutral-300 underline">suporte@distribuicaoalphasin.com.br</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- DISCLAIMER SANITÁRIO OBRIGATÓRIO (TABOOLA & ANVISA) -->
+      <div class="border-t border-neutral-800 pt-6 text-[11px] text-neutral-500 space-y-2">
+        <p>
+          <strong>Aviso Legal & Regulatório:</strong> Este site consiste em um informe publicitário veiculado em formato editorial. As informações aqui contidas possuem caráter exclusivamente informativo e não devem substituir consultas, laudos ou diagnósticos emitidos por médicos urologistas ou profissionais de saúde qualificados. Os resultados podem variar de acordo com o metabolismo e a individualidade biológica de cada homem.
+        </p>
+        <p>
+          Produto isento de obrigatoriedade de registro de acordo com a <strong>RDC nº 240/2018 da ANVISA</strong> para suplementos alimentares naturais formulados com nutrientes aprovados.
+        </p>
+        
+        <!-- LINKS LEGAIS 100% FUNCIONAIS COM MODAL E PÁGINAS DEDICADAS (CRAWLERS DO TABOOLA RECEBEM HTTP 200) -->
+        <div class="flex flex-wrap items-center justify-between pt-4 text-neutral-400 text-[11px] border-t border-neutral-800/60 mt-4">
+          <span>© 2026 Portal Saúde & Ciência • Operado por ROGERIO OLIVEIRA DA SILVA (CNPJ: 62.471.607/0001-07).</span>
+          <div class="flex flex-wrap gap-4 mt-3 sm:mt-0 font-medium">
+            <a href="termos.html" onclick="openLegalModal('termos'); return false;" class="hover:text-white underline transition-colors cursor-pointer">Termos de Uso</a>
+            <a href="privacidade.html" onclick="openLegalModal('privacidade'); return false;" class="hover:text-white underline transition-colors cursor-pointer">Política de Privacidade</a>
+            <a href="diretrizes.html" onclick="openLegalModal('diretrizes'); return false;" class="hover:text-white underline transition-colors cursor-pointer">Diretrizes Editoriais</a>
+            <a href="contato.html" onclick="openLegalModal('contato'); return false;" class="hover:text-white underline transition-colors cursor-pointer">SAC e Contato</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL FLUTUANTE DE TEXTOS LEGAIS (COMPLIANCE TOTAL DO TABOOLA) -->
+  <div id="legal-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-gray-200 overflow-hidden">
+      
+      <!-- Cabeçalho do Modal -->
+      <div class="p-5 bg-neutral-900 text-white flex items-center justify-between border-b border-neutral-800 shrink-0">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#CC0000]"></span>
+          <h3 class="font-bold text-sm sm:text-base uppercase tracking-wider" id="modal-title">Termos de Uso</h3>
+        </div>
+        <button type="button" onclick="closeLegalModal()" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white flex items-center justify-center font-bold text-base transition-colors" aria-label="Fechar janela">
+          ✕
+        </button>
+      </div>
+
+      <!-- Corpo do Modal com Rolagem -->
+      <div class="p-6 overflow-y-auto text-xs sm:text-sm text-gray-700 space-y-4 leading-relaxed font-sans" id="modal-body">
+        <!-- Conteúdo inserido dinamicamente via JS -->
+      </div>
+
+      <!-- Rodapé do Modal -->
+      <div class="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center text-xs text-gray-500 shrink-0">
+        <span>ROGERIO OLIVEIRA DA SILVA • CNPJ: 62.471.607/0001-07</span>
+        <button type="button" onclick="closeLegalModal()" class="px-4 py-2 bg-neutral-900 hover:bg-neutral-800 text-white font-bold rounded-lg transition-colors">
+          Fechar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BARRA FLUTUANTE INFERIOR (STICKY BAR MOBILE) -->
+  <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 bg-neutral-950/95 backdrop-blur-md border-t border-neutral-800 p-3 z-40 shadow-2xl flex items-center justify-between max-w-xl mx-auto md:max-w-2xl lg:max-w-4xl transition-transform duration-300 translate-y-full sm:hidden">
+    <div class="text-left leading-tight">
+      <div class="text-white text-xs font-bold flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        Pague Apenas na Entrega
+      </div>
+      <div class="text-gray-400 text-[10px]">Sem cartão antecipado • Caixa 100% discreta</div>
+    </div>
+
+    <a 
+      id="sticky-cta-btn"
+      href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20envio%20do%20Alphasin%20com%20PAGAMENTO%20NA%20ENTREGA%20para%20o%20meu%20CEP." 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="btn-press bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs px-4 py-2.5 rounded-xl shadow-lg flex items-center justify-center gap-1.5 uppercase tracking-wide shrink-0"
+    >
+      <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- SCRIPTS DE NAVEGAÇÃO ENTRE ABAS, MODAL LEGAL E MICROINTERAÇÕES -->
+  <script>
+    // Textos Oficiais para Modais de Compliance Taboola
+    const LEGAL_TEXTS = {
+      termos: {
+        title: "Termos de Uso e Condições Gerais",
+        content: `
+          <p><strong>1. Identificação da Empresa e Natureza do Serviço:</strong> O presente website é uma plataforma informativa de caráter publicitário (advertorial) operada para a divulgação do suplemento alimentar Alphasin, com distribuição e comercialização oficial sob responsabilidade de ROGERIO OLIVEIRA DA SILVA (CNPJ: 62.471.607/0001-07), com sede no Brasil.</p>
+          <p><strong>2. Isenção de Responsabilidade Médica:</strong> As informações veiculadas neste portal têm como finalidade exclusiva a educação nutricional e a divulgação de estudos científicos independentes sobre fitonutrientes. Este produto é um suplemento alimentar notificado conforme a RDC nº 240/2018 da ANVISA e NÃO constitui medicamento, diagnóstico ou substituto de acompanhamento clínico profissional com médico urologista.</p>
+          <p><strong>3. Modalidade de Pagamento na Entrega:</strong> A modalidade de pagamento presencial ('Pay after Delivery') é viabilizada por transportadoras e entregadores credenciados. O cliente realiza o pagamento apenas após o recebimento físico do pacote lacrado em sua residência, mediante confirmação prévia de rota no WhatsApp. O prazo logístico padrão varia de 7 a 10 dias úteis.</p>
+          <p><strong>4. Foro e Legislação Aplicável:</strong> Este termo é regido pelas leis vigentes da República Federativa do Brasil e pelo Código de Defesa do Consumidor (Lei nº 8.078/1990).</p>
+        `
+      },
+      privacidade: {
+        title: "Política de Privacidade e Proteção de Dados (LGPD)",
+        content: `
+          <p><strong>1. Compromisso com a Privacidade (Lei nº 13.709/2018 - LGPD):</strong> ROGERIO OLIVEIRA DA SILVA assume o compromisso rigoroso de proteger a privacidade e os dados pessoais de todos os visitantes de sua plataforma.</p>
+          <p><strong>2. Coleta de Dados Limitada:</strong> A navegação informativa neste portal não exige cadastro obrigatório nem coleta de dados sensíveis ou bancários. O preenchimento do CEP é utilizado estritamente para a formulação da consulta de rota logística via WhatsApp.</p>
+          <p><strong>3. Ausência de Cobrança Online:</strong> Não coletamos números de cartão de crédito, códigos de segurança (CVV) nem senhas bancárias em nossa página. Todo o acerto financeiro ocorre exclusivamente de forma presencial no ato do recebimento do produto.</p>
+          <p><strong>4. Direitos do Titular:</strong> O usuário tem o direito de solicitar a qualquer momento a confirmação da existência de tratamento e a eliminação de dados de contato tratados com base no seu consentimento através do e-mail oficial de suporte.</p>
+        `
+      },
+      diretrizes: {
+        title: "Diretrizes Editoriais e Transparência",
+        content: `
+          <p><strong>1. Transparência Publicitária:</strong> Este website é publicado em formato editorial (advertorial) para fins de comunicação comercial transparente de suplemento alimentar. A identificação de 'Informe Publicitário' está ostensivamente presente no topo fixo e no rodapé do portal.</p>
+          <p><strong>2. Embasamento Científico:</strong> Os textos são elaborados com base em literaturas fitoquímicas internacionais sobre os benefícios de antioxidantes e extratos concentrados de Cúrcuma Longa e Semente de Uva.</p>
+          <p><strong>3. Conformidade Sanitária:</strong> Todas as afirmações seguem as exigências da Resolução RDC 240/2018 da Agência Nacional de Vigilância Sanitária (ANVISA) e contam com supervisão técnica química (CRQ: 02200413).</p>
+        `
+      },
+      contato: {
+        title: "Serviço de Atendimento ao Consumidor (SAC)",
+        content: `
+          <p><strong>Canal Oficial de Atendimento:</strong></p>
+          <p>• <strong>Razão Social:</strong> ROGERIO OLIVEIRA DA SILVA<br>
+          • <strong>CNPJ:</strong> 62.471.607/0001-07<br>
+          • <strong>Responsável Técnico Químico:</strong> Mário Henrique Nunes Peres (CRQ: 02200413)<br>
+          • <strong>E-mail de Suporte:</strong> <a href="mailto:suporte@distribuicaoalphasin.com.br" class="text-red-700 underline font-semibold">suporte@distribuicaoalphasin.com.br</a><br>
+          • <strong>Horário de Atendimento:</strong> Segunda a Sexta-feira, das 09h às 18h (Horário de Brasília).</p>
+          <p>Para dúvidas sobre pedidos agendados com pagamento na entrega (prazo de 7 a 10 dias úteis), entre em contato através do WhatsApp oficial de suporte com o número do seu CEP em mãos.</p>
+        `
+      }
+    };
+
+    // Abre o Modal Legal correspondente
+    function openLegalModal(type) {
+      const data = LEGAL_TEXTS[type];
+      if (!data) return;
+
+      document.getElementById('modal-title').textContent = data.title;
+      document.getElementById('modal-body').innerHTML = data.content;
+      
+      const modal = document.getElementById('legal-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Fecha o Modal Legal
+    function closeLegalModal() {
+      const modal = document.getElementById('legal-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    // Fecha modal com ESC ou clique fora
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLegalModal();
+    });
+    document.getElementById('legal-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'legal-modal') closeLegalModal();
+    });
+
+    // Mensagens personalizadas do WhatsApp para cada caderno
+    const WHATSAPP_MESSAGES = {
+      investigacao: "Olá! Li a matéria de INVESTIGAÇÃO do Portal Saúde & Ciência sobre o Alphasin e gostaria de verificar o envio com PAGAMENTO NA ENTREGA para o meu CEP.",
+      urologia: "Olá! Li o caderno de UROLOGIA do Portal Saúde & Ciência. Meu principal problema é o jato fraco e a sensação de bexiga cheia. Gostaria de solicitar o Alphasin com PAGAMENTO NA ENTREGA.",
+      longevidade: "Olá! Li a matéria de LONGEVIDADE do Portal Saúde & Ciência sobre a recuperação do sono e vigor. Gostaria de pedir o Alphasin com PAGAMENTO NA ENTREGA.",
+      checagem: "Olá! Vi a CHECAGEM DE FATOS do Portal Saúde & Ciência sobre a procedência e aprovação do Alphasin e quero fazer meu pedido com PAGAMENTO NA ENTREGA.",
+      ultimas: "Olá! Vi as ÚLTIMAS NOTÍCIAS do Portal Saúde & Ciência sobre o lote do Alphasin e quero agendar meu envio com PAGAMENTO NA ENTREGA."
+    };
+
+    // Função de alternância entre as matérias
+    function switchTab(tabId) {
+      const tabs = document.querySelectorAll('.article-tab');
+      tabs.forEach(tab => {
+        tab.classList.add('hidden');
+        tab.classList.remove('block');
+      });
+
+      const activeSection = document.getElementById('tab-' + tabId);
+      if (activeSection) {
+        activeSection.classList.remove('hidden');
+        activeSection.classList.add('block');
+      }
+
+      const desktopNavs = document.querySelectorAll('.nav-tab');
+      desktopNavs.forEach(btn => {
+        btn.classList.remove('text-[#CC0000]', 'border-b-2', 'border-[#CC0000]', 'active-nav', 'font-black');
+        btn.classList.add('hover:text-white', 'text-neutral-300', 'font-bold');
+      });
+      const currentDesktopNav = document.getElementById('nav-btn-' + tabId);
+      if (currentDesktopNav) {
+        currentDesktopNav.classList.add('text-[#CC0000]', 'border-b-2', 'border-[#CC0000]', 'active-nav', 'font-black');
+        currentDesktopNav.classList.remove('hover:text-white', 'text-neutral-300');
+      }
+
+      const mobNavs = document.querySelectorAll('.mob-tab');
+      mobNavs.forEach(btn => {
+        btn.classList.remove('bg-[#CC0000]', 'text-white', 'font-black');
+        btn.classList.add('bg-neutral-800', 'text-neutral-300', 'font-bold');
+      });
+      const currentMobNav = document.getElementById('mob-btn-' + tabId);
+      if (currentMobNav) {
+        currentMobNav.classList.add('bg-[#CC0000]', 'text-white', 'font-black');
+        currentMobNav.classList.remove('bg-neutral-800', 'text-neutral-300');
+      }
+
+      const msg = WHATSAPP_MESSAGES[tabId] || WHATSAPP_MESSAGES.investigacao;
+      const newUrl = "https://wa.me/5500000000000?text=" + encodeURIComponent(msg);
+
+      const sidebarBtn = document.getElementById('sidebar-whatsapp-btn');
+      if (sidebarBtn) sidebarBtn.href = newUrl;
+
+      const stickyBtn = document.getElementById('sticky-cta-btn');
+      if (stickyBtn) stickyBtn.href = newUrl;
+
+      const container = document.getElementById('artigo-container');
+      if (container && window.scrollY > container.offsetTop) {
+        window.scrollTo({
+          top: container.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. DATA ATUAL DINÂMICA
+      const dateOptions = { day: '2-digit', month: 'long', year: 'numeric' };
+      const today = new Date().toLocaleDateString('pt-BR', dateOptions);
+      document.querySelectorAll('.current-date-display').forEach(el => {
+        el.textContent = 'Atualizado em ' + today;
+      });
+
+      // 2. BARRA DE PROGRESSO DE LEITURA
+      const progressBar = document.getElementById('reading-progress');
+      window.addEventListener('scroll', () => {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight > 0) {
+          const progress = (window.scrollY / docHeight) * 100;
+          progressBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+        }
+      }, { passive: true });
+
+      // 3. BARRA FIXA MOBILE AO ROLAR
+      const stickyBar = document.getElementById('sticky-bar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          stickyBar.classList.remove('translate-y-full');
+        } else {
+          stickyBar.classList.add('translate-y-full');
+        }
+      }, { passive: true });
+
+      // 4. CONSULTA DE CEP DIRECIONADA AO WHATSAPP DO ATENDENTE (PRAZO REAL: 7 A 10 DIAS)
+      const cepInput = document.getElementById('cep-input');
+      const btnCheckCep = document.getElementById('btn-check-cep');
+
+      if (btnCheckCep && cepInput) {
+        cepInput.addEventListener('input', (e) => {
+          let val = e.target.value.replace(/\D/g, '');
+          if (val.length > 5) {
+            val = val.substring(0, 5) + '-' + val.substring(5, 8);
+          }
+          e.target.value = val;
+        });
+
+        btnCheckCep.addEventListener('click', () => {
+          const rawCep = cepInput.value.trim();
+          let text = '';
+          if (rawCep.length >= 8) {
+            text = `Olá! Gostaria de consultar a disponibilidade de envio do Alphasin com PAGAMENTO NA ENTREGA para o meu CEP: ${rawCep} (prazo padrão de 7 a 10 dias úteis).`;
+          } else {
+            text = `Olá! Gostaria de consultar a disponibilidade de envio do Alphasin com PAGAMENTO NA ENTREGA para o meu CEP (prazo padrão de 7 a 10 dias úteis).`;
+          }
+          const waUrl = "https://wa.me/5500000000000?text=" + encodeURIComponent(text);
+          window.open(waUrl, '_blank');
+        });
+      }
+
+      // 5. CURTIDAS INTERATIVAS
+      const likeButtons = document.querySelectorAll('.like-btn');
+      likeButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          if (!this.classList.contains('liked')) {
+            this.classList.add('liked', 'text-[#CC0000]');
+            const countEl = this.querySelector('.like-count');
+            let count = parseInt(countEl.textContent, 10);
+            countEl.textContent = count + 1;
+          }
+        });
+      });
+
+    });
+
+    // ==========================================
+    // SISTEMA DE ÁUDIO ESTRATÉGICO & CONVERSÃO
+    // ==========================================
+    const audio = document.getElementById('meuAudio');
+    const btnPlay = document.getElementById('btnPlay');
+    const btnPlayText = document.getElementById('btnPlayText');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const btnWhats = document.getElementById('btnWhats');
+    const tempoAudio = document.getElementById('tempoAudio');
+    const audioProgressFill = document.getElementById('audio-progress-fill');
+    const audioStatusText = document.getElementById('audio-status-text');
+
+    // Botão de Play no Cabeçalho Superior (Sticky Header - Acesso Imediato)
+    const headerPlayBtn = document.getElementById('headerPlayBtn');
+    const headerPlayIcon = document.getElementById('headerPlayIcon');
+    const headerPauseIcon = document.getElementById('headerPauseIcon');
+    const headerPlayText = document.getElementById('headerPlayText');
+
+    // Mini Player Flutuante
+    const miniAudioPlayer = document.getElementById('mini-audio-player');
+    const miniPlayIconSvg = document.getElementById('miniPlayIconSvg');
+    const miniPauseIconSvg = document.getElementById('miniPauseIconSvg');
+    const miniTempoAudio = document.getElementById('miniTempoAudio');
+    const miniProgressFill = document.getElementById('mini-progress-fill');
+    const miniWhatsBtn = document.getElementById('miniWhatsBtn');
+
+    let audioHasStarted = false;
+    let audioCtaTriggered = false;
+
+    // Disparo Unificado para Pixel (Taboola & Meta/Facebook)
+    function trackAudioPixel(eventName, metaCustomEvent) {
+      try {
+        if (window._tfa) {
+          window._tfa.push({ notify: 'event', name: eventName });
+        }
+        if (window.fbq) {
+          window.fbq('trackCustom', metaCustomEvent || eventName);
+        }
+      } catch (err) {
+        console.warn('Pixel tracking error:', err);
+      }
+    }
+
+    function formatTimeDisplay(seconds) {
+      const s = Math.floor(seconds) || 0;
+      const m = Math.floor(s / 60);
+      const remS = s % 60;
+      return (m < 10 ? '0' + m : m) + ':' + (remS < 10 ? '0' + remS : remS);
+    }
+
+    function controlarAudio() {
+      if (!audio) return;
+
+      if (audio.paused) {
+        audio.play().then(() => {
+          btnPlayText.innerText = "PAUSAR";
+          playIcon.classList.add('hidden');
+          pauseIcon.classList.remove('hidden');
+
+          if (headerPlayText) headerPlayText.innerText = "Pausar";
+          if (headerPlayIcon) headerPlayIcon.classList.add('hidden');
+          if (headerPauseIcon) headerPauseIcon.classList.remove('hidden');
+          if (headerPlayBtn) {
+            headerPlayBtn.classList.add('ring-2', 'ring-emerald-400', 'bg-emerald-700');
+          }
+
+          miniPlayIconSvg.classList.add('hidden');
+          miniPauseIconSvg.classList.remove('hidden');
+
+          audioStatusText.innerText = "Reproduzindo resumo em áudio...";
+
+          // Exibe imediatamente a barra fixa de WhatsApp no mobile ao dar play
+          const stickyBar = document.getElementById('sticky-bar');
+          if (stickyBar) stickyBar.classList.remove('translate-y-full');
+
+          // Rastreia o início do áudio no Pixel
+          if (!audioHasStarted) {
+            audioHasStarted = true;
+            trackAudioPixel('audio_started', 'Audio_Play');
+          }
+        }).catch(err => {
+          console.error("Playback error:", err);
+        });
+      } else {
+        audio.pause();
+        btnPlayText.innerText = "CONTINUAR OUVINDO";
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+
+        if (headerPlayText) headerPlayText.innerText = "Ouvir (1 min)";
+        if (headerPlayIcon) headerPlayIcon.classList.remove('hidden');
+        if (headerPauseIcon) headerPauseIcon.classList.add('hidden');
+        if (headerPlayBtn) {
+          headerPlayBtn.classList.remove('ring-2', 'ring-emerald-400', 'bg-emerald-700');
+        }
+
+        miniPlayIconSvg.classList.remove('hidden');
+        miniPauseIconSvg.classList.add('hidden');
+
+        audioStatusText.innerText = "Áudio pausado. Toque para continuar.";
+      }
+    }
+
+    function seekAudio(event) {
+      if (!audio || !audio.duration) return;
+      const bar = document.getElementById('audio-progress-bar');
+      const rect = bar.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+      audio.currentTime = pos * audio.duration;
+    }
+
+    if (audio) {
+      // Atualização de tempo e sincronização aos 48s
+      audio.ontimeupdate = function() {
+        const cur = audio.currentTime;
+        const dur = audio.duration || 66.5;
+        const formattedCur = formatTimeDisplay(cur);
+        const formattedDur = formatTimeDisplay(dur);
+
+        tempoAudio.innerText = formattedCur + ' / ' + formattedDur;
+        if (miniTempoAudio) miniTempoAudio.innerText = formattedCur + ' / ' + formattedDur;
+
+        const pct = (cur / dur) * 100;
+        if (audioProgressFill) audioProgressFill.style.width = pct + '%';
+        if (miniProgressFill) miniProgressFill.style.width = pct + '%';
+
+        // Sincronização da voz: aos 48 segundos (momento exato do CTA falado)
+        if (cur >= 48 && !audioCtaTriggered) {
+          audioCtaTriggered = true;
+          if (btnWhats) btnWhats.classList.add('pulsar-destaque');
+          if (miniWhatsBtn) miniWhatsBtn.classList.add('pulsar-destaque');
+          if (headerPlayBtn) headerPlayBtn.classList.add('pulsar-destaque');
+          const stickyCtaBtn = document.getElementById('sticky-cta-btn');
+          if (stickyCtaBtn) stickyCtaBtn.classList.add('pulsar-destaque');
+
+          trackAudioPixel('audio_cta_reached', 'Audio_CTA_Reached');
+        }
+      };
+
+      // Fim do áudio (concluído)
+      audio.onended = function() {
+        btnPlayText.innerText = "OUVIR NOVAMENTE";
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+
+        if (headerPlayText) headerPlayText.innerText = "Ouvir (1 min)";
+        if (headerPlayIcon) headerPlayIcon.classList.remove('hidden');
+        if (headerPauseIcon) headerPauseIcon.classList.add('hidden');
+        if (headerPlayBtn) {
+          headerPlayBtn.classList.remove('ring-2', 'ring-emerald-400', 'bg-emerald-700');
+        }
+
+        miniPlayIconSvg.classList.remove('hidden');
+        miniPauseIconSvg.classList.add('hidden');
+
+        if (audioStatusText) {
+          audioStatusText.innerHTML = "<strong class='text-emerald-400'>✓ Áudio concluído.</strong> Toque no botão verde abaixo para abrir seu atendimento prioritário.";
+        }
+
+        if (btnWhats) btnWhats.classList.add('pulsar-destaque');
+        if (miniWhatsBtn) miniWhatsBtn.classList.add('pulsar-destaque');
+
+        trackAudioPixel('audio_completed', 'Audio_Complete');
+      };
+    }
+
+    // Observador de Rolagem para o Mini Player Flutuante
+    window.addEventListener('scroll', () => {
+      const audioContainer = document.getElementById('audio-player-container');
+      const miniPlayer = document.getElementById('mini-audio-player');
+      if (!audioContainer || !miniPlayer || !audio) return;
+
+      const rect = audioContainer.getBoundingClientRect();
+      const isOutOfView = rect.bottom < 50;
+
+      // O mini player só aparece se o áudio estiver tocando ou tiver sido iniciado e o container saiu da tela
+      if (isOutOfView && !audio.paused) {
+        miniPlayer.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+        miniPlayer.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      } else {
+        miniPlayer.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        miniPlayer.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

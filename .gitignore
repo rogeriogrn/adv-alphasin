@@ -1,0 +1,6 @@
+# Ambientes e Dependências
+node_modules/
+.agents/
+.DS_Store
+Thumbs.db
+*.log
