@@ -147,6 +147,7 @@
   <script type='text/javascript'>
     window._tfa = window._tfa || [];
     window._tfa.push({notify: 'event', name: 'page_view', id: 2101593});
+    window._tfa.push({notify: 'event', name: 'view_content', id: 2101593});
     !function (t, f, a, x) {
            if (!document.getElementById(x)) {
               t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
@@ -157,6 +158,25 @@
     'tb_tfa_script');
   </script>
   <!-- End of Taboola Pixel Code -->
+
+  <!-- Taboola Click ID (tblci) Capture & 1st-Party Persistence -->
+  <script>
+    (function() {
+      function getQueryParam(name) {
+        var params = new URLSearchParams(window.location.search);
+        return params.get(name);
+      }
+      var tblci = getQueryParam('tblci');
+      if (tblci) {
+        var maxAgeDays = 30;
+        var expiryDate = new Date(Date.now() + maxAgeDays * 24 * 60 * 60 * 1000).toUTCString();
+        document.cookie = "tb_click_id=" + encodeURIComponent(tblci) + "; expires=" + expiryDate + "; path=/; SameSite=Lax";
+        try {
+          localStorage.setItem('tb_click_id', tblci);
+        } catch(e) {}
+      }
+    })();
+  </script>
 </head>
 
 <body class="bg-[#F8F9FA] text-gray-900 font-sans antialiased min-h-screen flex flex-col selection:bg-red-100 selection:text-red-900 pb-20">
@@ -1614,7 +1634,7 @@
     function trackAudioPixel(eventName, metaCustomEvent) {
       try {
         if (window._tfa) {
-          window._tfa.push({ notify: 'event', name: eventName });
+          window._tfa.push({ notify: 'event', name: eventName, id: 2101593 });
         }
         if (window.fbq) {
           window.fbq('trackCustom', metaCustomEvent || eventName);
@@ -1765,6 +1785,33 @@
         miniPlayer.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
       }
     }, { passive: true });
+
+    // ==========================================
+    // RASTREAMENTO DE CONVERSÕES TABOOLA (MANUAL)
+    // ==========================================
+    function trackTaboolaContact() {
+      try {
+        window._tfa = window._tfa || [];
+        window._tfa.push({
+          notify: 'event',
+          name: 'contact',
+          id: 2101593
+        });
+        if (window.fbq) {
+          window.fbq('track', 'Contact');
+        }
+      } catch (err) {
+        console.warn('Erro ao disparar evento Taboola contact:', err);
+      }
+    }
+
+    // Interceptor global para qualquer clique em links ou botões de WhatsApp
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href*="wa.me"], a[href*="whatsapp"], #btnWhats, #miniWhatsBtn, #sticky-cta-btn');
+      if (link) {
+        trackTaboolaContact();
+      }
+    });
   </script>
 
 </body>

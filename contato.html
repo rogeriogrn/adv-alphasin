@@ -12,6 +12,40 @@
   <style>
     body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
   </style>
+
+  <!-- Taboola Pixel Code -->
+  <script type='text/javascript'>
+    window._tfa = window._tfa || [];
+    window._tfa.push({notify: 'event', name: 'page_view', id: 2101593});
+    !function (t, f, a, x) {
+           if (!document.getElementById(x)) {
+              t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+           }
+    }(document.createElement('script'),
+    document.getElementsByTagName('script')[0],
+    '//cdn.taboola.com/libtrc/unip/2101593/tfa.js',
+    'tb_tfa_script');
+  </script>
+  <!-- End of Taboola Pixel Code -->
+
+  <!-- Taboola Click ID (tblci) Capture & 1st-Party Persistence -->
+  <script>
+    (function() {
+      function getQueryParam(name) {
+        var params = new URLSearchParams(window.location.search);
+        return params.get(name);
+      }
+      var tblci = getQueryParam('tblci');
+      if (tblci) {
+        var maxAgeDays = 30;
+        var expiryDate = new Date(Date.now() + maxAgeDays * 24 * 60 * 60 * 1000).toUTCString();
+        document.cookie = "tb_click_id=" + encodeURIComponent(tblci) + "; expires=" + expiryDate + "; path=/; SameSite=Lax";
+        try {
+          localStorage.setItem('tb_click_id', tblci);
+        } catch(e) {}
+      }
+    })();
+  </script>
 </head>
 <body class="bg-[#F8F9FA] text-gray-900 min-h-screen flex flex-col">
 
@@ -130,5 +164,22 @@
     </div>
   </footer>
 
+  <script>
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href*="wa.me"], a[href*="whatsapp"]');
+      if (link) {
+        try {
+          window._tfa = window._tfa || [];
+          window._tfa.push({
+            notify: 'event',
+            name: 'contact',
+            id: 2101593
+          });
+        } catch (err) {
+          console.warn('Taboola contact tracking error:', err);
+        }
+      }
+    });
+  </script>
 </body>
 </html>
