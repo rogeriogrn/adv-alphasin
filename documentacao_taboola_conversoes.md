@@ -53,3 +53,21 @@ Para rastreamento resiliente contra ad-blockers e perda de cookies:
    - `view_content`: Verde / Ativo
 4. Clique em qualquer botão de WhatsApp e observe o disparo imediato do evento:
    - `contact`: Verde / Ativo
+
+---
+
+## 5. Fila de Rotação Igualitária de WhatsApp (Round-Robin)
+O tráfego dos cliques em WhatsApp é distribuído de forma 100% alternada e sequencial entre os 3 números:
+
+* **Atendente 1:** `+55 21 96975-5691` (`5521969755691`)
+* **Atendente 2:** `+55 21 98080-5566` (`5521980805566`)
+* **Atendente 3:** `+55 21 98080-6961` (`5521980806961`)
+
+**Ciclo de rotação:**
+* Clique 1 ➔ Atendente 1
+* Clique 2 ➔ Atendente 2
+* Clique 3 ➔ Atendente 3
+* Clique 4 ➔ Atendente 1 (reinicia o ciclo de forma ininterrupta)
+
+O índice da fila é armazenado no `localStorage` do navegador (`tb_wa_queue_idx`), preservando as mensagens customizadas de cada botão e disparando a conversão do Taboola Pixel em cada chamada.
+
